@@ -1,0 +1,35 @@
+body {
+    background-color:  rgb(199, 255, 190);
+    color: rgb(0, 30, 255);
+    margin: 0px;
+    
+}
+header {
+    background-color: rgb(127, 246, 255); 
+    color: rgb(48, 0, 151);
+    padding: 10px; 
+    font-size: 16pt;
+    
+    
+}
+footer {
+    background-color: rgb(127, 246, 255); 
+    color: rgb(48, 0, 151);
+    padding: 10px; 
+    font-size: 14pt;
+    font-style: italic;
+    text-align: left;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    position: fixed;
+}
+img {
+    width: 900px;
+    padding-left: 250px;
+    margin-bottom: 50px;
+}
+h1 {
+    padding: 10px;
+}
