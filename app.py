@@ -67,11 +67,20 @@ def g():
 <!doctype html>
 <html>
     <head>
-    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+        <title>Верхозина Александра Андреевна, лабораторная 1</title>
     </head>
     <body>
+    <link rel="stylesheet"  href="'''+ url_for('static', filename='lab1.css')+'''">
+         <header>
+            НГТУ, ФБ, Лабораторная работа 1
+         </header>
+
         <h1>Дуб</h1>
-        <img src="'''+ url_for('static', filename='g.jpg')+'''">
+        <img src="'''+ url_for('static', filename='g.jpg')+'''" >
+
+        <footer>
+            &copy; Верхозина Александра, ФБИ-14, 3 курс,2023 год
+        </footer>
     </body>
 </html>
 '''
