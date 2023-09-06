@@ -24,12 +24,24 @@ footer {
     right: 0;
     z-index: 10;
     position: fixed;
+    
 }
 img {
     width: 900px;
     padding-left: 250px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
+    
 }
 h1 {
     padding: 10px;
+}
+p {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: Arial;
+    text-align: justify;
+    
+}
+div {
+    margin-bottom: 50px;
 }
