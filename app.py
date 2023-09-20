@@ -61,16 +61,16 @@ def lab1():
         <h2>Реализованные роуты</h2>
         <ul>
             <li>
-                <a href="/lab1/g" target="_blank" >/lab1/g - дуб</a>
+                <a href="/lab1/g"  >/lab1/g - дуб</a>
             </li>
             <li>
-                <a href="/lab1/student" target="_blank" >/lab1/student - студент</a>
+                <a href="/lab1/student"  >/lab1/student - студент</a>
             </li>
             <li>
-                <a href="/lab1/python" target="_blank" >/lab1/python - питон</a>
+                <a href="/lab1/python"  >/lab1/python - питон</a>
             </li>
             <li>
-                <a href="/lab1/kot" target="_blank" >/lab1/kot - Коты</a>
+                <a href="/lab1/kot"  >/lab1/kot - Коты</a>
             </li>
         </ul>
         
