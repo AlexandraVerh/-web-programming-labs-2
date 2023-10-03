@@ -22,7 +22,10 @@ def menu():
         <h1>web-сервер на flask</h1>
 
         <ol>
-            <a href="/lab1" target="_blank" >Первая лабораторная</a>
+            <li>
+                <a href="/lab1" >Первая лабораторная</a>
+            </li>
+           
         </ol>
 
         <footer>
@@ -56,7 +59,7 @@ def lab1():
         веб-приложений, сознательно предоставляющих лишь самые базовые возможности.
         </p>
         
-        <a href="/menu" target="_blank" >Меню</a>
+        <a href="/menu"  >Меню</a>
 
         <h2>Реализованные роуты</h2>
         <ul>
@@ -264,3 +267,6 @@ def example():
     return  render_template('example.html', name=name,num=num,grup=grup,kurs=kurs,
                              fruits=fruits, books=books)
 
+@app.route("/lab2/")
+def lab2():
+    return render_template('lab2.html')
