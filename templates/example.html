@@ -30,6 +30,13 @@
         <!-- &#8381 знак рубля-->
             {% endfor %}
         </ul>
+
+        <h3>Книги:</h3>
+        <ol>
+            {% for b in books %}
+            <li>{{ b.author }} {{ b.nazv }}, {{b.zanr}},{{b.str}}</li>
+            {% endfor %}
+        </ol>
     </main>
 
     <footer>
