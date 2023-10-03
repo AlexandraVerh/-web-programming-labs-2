@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Верхозина Александра. {% if num %}Лабораторная работа 2 {% endif %}</title>
+    <title>
+        {% if name %}
+            {{ name }} , 
+        {% else %}
+            Анонимус,
+        {% endif %}
+        {% if num %}Лабораторная работа 2 {% endif %}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 </head>
 <body>
@@ -19,7 +25,26 @@
     </main>
 
     <footer>
-        &copy; {{ name }} , {{grup}}, {{kurs}},2023
+        &copy; 
+        {% if name %}
+            {{ name }} , 
+        {% else %}
+            Анонимус,
+        {% endif %}
+
+        {% if grup %}
+            {{ grup }},
+        {% else %}
+            группа не существует:/,
+        {% endif %}
+
+        {% if kurs %}
+            {{ kurs }},
+        {% else %}
+            курс пропал,
+        {% endif %}
+       
+        2023
     </footer>
     
 </body>
