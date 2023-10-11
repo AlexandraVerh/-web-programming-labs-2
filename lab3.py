@@ -18,3 +18,26 @@ def form1():
     sex = request.args.get('sex')
     return render_template('form1.html', user=user, age=age, sex=sex, errors=errors)
 
+@lab3.route("/lab3/order")
+def forder():
+    return render_template('order.html')
+
+@lab3.route("/lab3/pay")
+def pay():
+    price = 0
+    drink = request.args.get('drink')
+    if drink == 'coffe':
+        price = 120
+    elif drink == 'black-tea':
+         price = 80
+    else: 
+         price = 70 
+    if request.args.get('milk') == 'on':
+        price += 30
+    if request.args.get('sugar') == 'on':
+        price += 10
+    return render_template('pay.html', price=price)
+
+@lab3.route("/lab3/opl")
+def opl():
+    return render_template('opl.html')

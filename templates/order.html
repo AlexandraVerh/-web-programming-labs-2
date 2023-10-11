@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3{% endblock %}
+
+{% block main %}
+    <style>
+        .dr {
+            color: rgb(130, 37, 37);
+            font-size: 30px;
+        }
+        .btn{
+            width: auto;
+            font-size: 25px;
+            background-color: rgb(56, 215, 236);
+            color: rgb(0, 0, 0);
+        }
+        .btn:hover{
+            background-color: rgb(53, 238, 145);
+        }
+        label {
+            font-size: x-large;
+        }
+    </style>
+
+    <h1>Заказ напитка</h1>
+
+    <form action="/lab3/pay">
+        
+
+        <h2>Стоимость напитков:</h2>
+        <div>Кофе - 120 рублей</div>
+        <div>Черный чай - 80 рублей</div>
+        <div>Зеленый чай - 70 рублей</div> 
+
+
+        <h3><div class="dr">Напиток:</div></h3>
+        <label>
+            <input type="radio" value="coffe" name="drink" checked>кофе
+        <!--checked используется для выбора элементов, когда они находятся в положении «включено»-->
+        </label>
+        <label>
+            <input type="radio" value="black-tea" name="drink" >черный чай
+        </label>
+        <label>
+            <input type="radio" value="green-tea" name="drink" >зеленый чай
+        </label>
+
+        <h2>Стоимость добавок:</h2>
+        <div >Молоко - 30 рублей</div>
+        <div>Сахар - 10 рублей</div>
+
+        <h3><div class="dr">Добавки: </div></h3>
+        <label>
+            <input type="checkbox"  name="milk"  checked>молоко
+        </label>
+        <label>
+            <input type="checkbox"  name="sugar" checked>сахар
+        </label>
+
+        <p>
+        <div>
+            <button class="btn" type="submit">Заказать</button>
+        </div>
+        </p>
+    </form>
+{% endblock  %}
