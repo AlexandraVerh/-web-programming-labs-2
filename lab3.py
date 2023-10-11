@@ -87,5 +87,4 @@ def paybil():
     
 @lab3.route('/lab3/oplbil')
 def oplbil():
-    
     return render_template('oplbil.html' )
