@@ -41,3 +41,51 @@ def pay():
 @lab3.route("/lab3/opl")
 def opl():
     return render_template('opl.html')
+
+@lab3.route('/lab3/bilet')
+def bilet():
+    errors = {}
+    familiya = request.args.get('familiya')
+    if familiya == '':
+        errors['familiya'] = 'Заполните поле!'
+
+    name = request.args.get('name')
+    if name == '':
+        errors['name'] = 'Заполните поле!'
+
+    otchestvo = request.args.get('otchestvo')
+    if otchestvo == '':
+        errors['otchestvo'] = 'Заполните поле!'
+    
+    age = request.args.get('age')
+    if age == '':
+        errors['age'] = 'Заполните поле!'
+
+    start = request.args.get('start')
+    if start == '':
+        errors['start'] = 'Заполните поле!'
+
+    finish = request.args.get('finish')
+    if finish == '':
+        errors['finish'] = 'Заполните поле!'
+
+    data = request.args.get('data')
+    if data == '':
+        errors['data'] = 'Заполните поле!'
+
+    bagaz = request.args.get('bagaz')
+
+    tipe = request.args.get('tipe')
+
+    polka = request.args.get('polka')
+    return render_template('bilet.html', familiya=familiya, name=name, otchestvo=otchestvo, age=age, 
+    start=start, finish=finish, data=data, bagaz=bagaz, tipe=tipe, polka=polka, errors=errors)
+
+@lab3.route('/lab3/paybil')
+def paybil():
+    return render_template('paybil.html')
+    
+@lab3.route('/lab3/oplbil')
+def oplbil():
+    
+    return render_template('oplbil.html' )

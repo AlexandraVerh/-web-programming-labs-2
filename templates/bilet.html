@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3{% endblock %}
+
+{% block main %}
+
+
+    <form  action="/lab3/oplbil">
+
+    <style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+    <h1>Покупка железнодорожного билета</h1>
+    
+
+        <label>Фамилия:</label>
+        <div>
+            <input type="text" placeholder="укажите фамилию" name="familiya" value="{{ familiya or '' }}">
+            <span >{{ errors.familiya }}</span>
+        </div>
+        <label>Имя:</label>
+         <div>
+            <input type="text" placeholder="укажите имя" name="name" value="{{ name or '' }}">
+            <span class="error">{{ errors.name }}</span>
+        </div>
+        
+
+        <label>Отчество:</label>
+        <div>
+            <input type="text" placeholder="укажите отчество" name="otchestvo" value="{{ otchestvo or '' }}">
+            <span class="error">{{ errors.otchestvo }}</span>
+        </div>
+        
+        <p>
+        <div>Выберите тип билета:</div>
+        <div>
+            <select name="tipe">
+                <option value="children" {{ tipe == 'children' and 'selected' }}>Детский</option>
+                <option value="vzrosliy" {{ tipe == 'vzrosliy' and 'selected' }}>Взрослый</option>
+            </select>
+        </div>
+        </p>
+        <div>Выберите полку:</div>
+        <div>
+            <select name="polka">
+                <option value="niz" {{ polka == 'niz' and 'selected' }}>Нижняя</option>
+                <option value="verh" {{ polka == 'verh' and 'selected' }}>Верхняя</option>
+                <option value="verhbok" {{ polka == 'verhbok' and 'selected' }}>Верхняя боковая</option>
+                <option value="nozbok" {{ polka == 'nizbok' and 'selected' }}>Нижняя боковая</option>
+            </select>
+        </div>
+        
+        <div>
+        <label>У вас есть багаж?</label>
+        </div>
+        <div>
+            <select name="bagaz">
+                <option value="yes" {{ bagaz == 'yes' and 'selected' }}>Да</option>
+                <option value="no" {{ bagaz == 'no' and 'selected' }}>Нет</option>
+            </select>
+        </div>
+
+        <label>Ваш возраст:</label>
+        <div>
+            <input type="number"  name="age" value="{{ age or '' }}" required min="18" max="120">
+            <span class="error">{{ errors.age }}</span>
+        </div>
+
+        <label>Пункт отправления:</label>
+        <div>
+            <input type="text" placeholder="укажите пункт отправления" name="start" value="{{ start or '' }}">
+            <span class="error">{{ errors.start }}</span>
+        </div>
+        
+
+        <label>Пункт назначения:</label>
+        <div>
+            <input type="text" placeholder="укажите пункт назначения" name="finish" value="{{ finish or '' }}">
+            <span class="error">{{ errors.finish }}</span>
+        </div>
+        
+
+        <label>Дата поездки:</label>
+        <div>
+            <input type="date" name="data" value="{{ data or '' }}">
+            <span class="error">{{ errors.data}}</span>
+        </div>
+
+        <div>
+            <button type="submit" >Оформить билет</button>
+        </div>
+
+
+    </form>
+
+        
+
+{% endblock  %}

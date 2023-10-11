@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3{% endblock %}
+
+{% block main %}
+    <h1>Спасибо, ваш билет оплачен, ожидайте поездку</h1>
+
+    <div>Ваша фамилия: {{ familiya }}</div>
+    <div>Ваше имя: {{ request.form.name }}</div>
+    <div>Ваше отчество: {{ request.form.otchestvo }}</div>
+    <div>Ваш возраст: {{ request.form.age }}</div>
+    <div>Пункт выезда: {{ request.form.start }}</div>
+    <div>Пункт назначения: {{ request.form.finish }}</div>
+    <div>Тип билета: {{ 'Детский' if tipe == 'children' else 'Взрослый' }}</div>
+    <div>Наличие багажа: {{ 'Нет' if bagaz == 'no' else 'Имеется' }}</div>
+    <div>Дата поездки: {{ request.form.data }}</div>
+    <div>Ваша полка: 
+        {% if polka == 'niz' %}
+            Нижняя
+        {% elif polka == 'nizbok' %}
+            Нижняя боковая
+        {% elif polka == 'verh' %}
+            Верхняя
+        {% else %}
+            Верхняя боковая
+        {% endif %}
+    </div>
+
+    <div>
+        <a href="/lab3/bilet">Вернуться к покупке билета</a>
+    </div>
+
+
+
+{% endblock  %}
