@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 4{% endblock %}
+
+{% block main %}
+    <h1>Здравствуйте, Alex! Вы успешно вошли, поздравляем</h1>
+    <form action="/lab4/login">
+        <button  type="submit">Вернуться</button>
+    </form>
+{% endblock  %}
