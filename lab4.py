@@ -106,14 +106,30 @@ def zerno():
 
     return render_template('zerno.html', error=error, zerno=zerno, ves=ves, message=message)
 
-@lab4.route('/lab4/cookies', methods=['GET', 'POST'])
+@lab4.route('/lab4/cookies', methods = ['GET', 'POST']) 
 def cookies(): 
     if request.method == 'GET': 
         return render_template('cookies.html') 
-    
-    color = request.form.get('color')
-    headers = {
-        'Set-Cookie': 'color=' + color + '; path=/',
-        'Location': '/lab4/cookies'
-    }
-    return '',303,headers
+ 
+    color = request.form.get('color') 
+    backcolor = request.form.get('backcolor') 
+    font_size = request.form.get('font_size') 
+    if color == backcolor: 
+        # Если цвет текста совпадает с цветом фона 
+        error_cv = 'Цвет текста и фона одинаковые, выберите разные цвета!' 
+        return render_template('error.html', error_cv=error_cv) 
+    headers = { 
+        'Set-Cookie': [ 
+            'color=' + color + ' ; path=/', 
+            'backcolor=' + backcolor + ' ; path=/', 
+            'font_size=' + str(font_size) + ' ; path=/' 
+        ], 
+        'Location': '/lab4/cookies' 
+    } 
+ 
+    return '', 303, headers
+
+@lab4.route('/lab4/error', methods=['GET', 'POST']) 
+def error(): 
+    if request.method == 'GET': 
+        return render_template('error.html')

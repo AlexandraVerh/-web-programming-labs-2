@@ -9,7 +9,9 @@
     <style>
         body { 
             color: {{ request.cookies.get('color') }}; 
-        }
+            background-color: {{ request.cookies.get('backcolor') }}; 
+            font-size: {{ request.cookies.get('font_size') }}px; 
+        } 
     </style>
     {% endif %}
 </head>
