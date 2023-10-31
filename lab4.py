@@ -69,5 +69,39 @@ def holodil():
         return render_template('holodil.html', error=error, temperature=temperature, message=message, snowflakes=snowflakes)
 
     
-    
-   
+@lab4.route('/lab4/zerno', methods=['GET', 'POST'])
+def zerno(): 
+    if request.method == 'GET': 
+        return render_template('zerno.html') 
+
+    error = {}
+    zerno = request.form.get('zerno') 
+    ves = request.form.get('ves') 
+    message = ''
+
+     
+    if ves is None or ves == '': 
+        error = 'не введен вес' 
+    elif float(ves) <= 0:  # float для запятой 
+        error = 'неверное значение веса'
+    elif zerno: 
+        if zerno == 'ячмень': 
+            price = 12000 
+        elif zerno == 'овес': 
+            price = 8500 
+        elif zerno == 'пшеница': 
+            price = 8700 
+        elif zerno == 'рожь': 
+            price = 14000 
+
+        total_cost = float(ves) * price 
+
+        if float(ves) > 50: 
+            total_cost *= 0.9 
+            message = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб. Применена скидка за большой объем.'.format(zerno, ves, total_cost) 
+        else: 
+            message = 'Заказ успешно сформирован. Вы заказали {}. Вес: {} т. Сумма к оплате: {} руб.'.format(zerno, ves, total_cost) 
+        if float(ves) > 500: 
+            message = 'Такого объема сейчас нет в наличии.'
+
+    return render_template('zerno.html', error=error, zerno=zerno, ves=ves, message=message)
