@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{% block main %}
+<a href="/lab5/" >Пятая лабораторная</a>
+<h1>Список статей пользователя {{ username }}</h1>
+<div>
+    <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+    <ul>
+        {% for article in articles_list %}
+        <li>
+            <h2 style="margin-top: 24px; margin-bottom: 0px;">Заголовок: {{  article[1] }}</h2>
+            <br>ID: {{ article[0] }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

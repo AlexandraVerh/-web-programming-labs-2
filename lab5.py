@@ -177,5 +177,25 @@ def getArticle(article_id):
 
         return render_template("articleN.html", article_text=text,
         article_title=articleBody[0], username=session.get("username"))
+    
+@lab5.route("/lab5/article_list")
+def getArticleList():
+    userID = session.get("id")
+    username = session.get("username")
+    articles_list = "Нет статей"
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()
+        
+        cur.execute(f"SELECT id, title FROM articles WHERE user_id = {userID}")
+        articles_list = cur.fetchall()
+
+    return render_template("article_list.html", articles_list=articles_list, username=username)
+
+
+@lab5.route("/lab5/logout")
+def logout():
+    session.clear()
+    return redirect("/lab5/login")
 
 

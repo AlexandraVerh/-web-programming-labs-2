@@ -3,9 +3,11 @@
 {% block lab %}Лабораторная работа 5{% endblock %}
 
 {% block main %}
+<a href="/lab5/" >Пятая лабораторная</a>
+<a href="/lab5/" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">На главную</a>
     <div>
      <h1>{{ article_title }}</h1>
-     <a href="/lab5/" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">На главную</a>
+     
      {% for paragraph in article_text %}
      <p>{{ paragraph }}</p>
      {% endfor %}
