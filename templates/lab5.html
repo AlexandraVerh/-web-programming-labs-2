@@ -3,17 +3,18 @@
 {% block lab %}Лабораторная работа 5{% endblock %} 
  
 {% block main %} 
-   <div> 
-        <a href="/lab5/users">Users</a> 
-       <a href="/lab5/article_list">Посмотреть записи</a> 
-       <a href="/lab5/article_publish_list">Опубликованные записи</a> 
-       <a href="/lab5/new_article" >Создать заметку</a> 
-       <a href="/lab5/login">Логин</a> 
-       <a href="/lab5/register" >Регистрация</a> 
-       <span>{{username}}</span> 
-       <a style="color: red;" href="/lab5/logout" >Выход</a> 
-   </div> 
+    <div style="display: flex; justify-content: space-between;">
+        <p style="color: rgb(54, 42, 165); font-size: 25px;">База знаний</p>
+        <div style="text-align: center;">
+            <a href="/lab5/article_list">Посмотреть заметки</a>
+            <a href="/lab5/new_article">Создать заметку</a>
+            <a href="/lab5/users">Пользователи</a>
+        </div>
+        <div>
+            <a href="/lab5/login" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Логин</a>
+            <a href="/lab5/register" style="background-color: blue; color: white; padding: 5px 10px; border-radius: 5px;">Регистрация</a>
+            <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+            <span>{{username}}</span>
+        </div>
+    </div>
 {% endblock %}
-
-</body>
-</html>
