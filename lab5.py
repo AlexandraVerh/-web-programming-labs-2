@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, redirect, request
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Blueprint, render_template, redirect, request, session
 import psycopg2
 
 lab5 = Blueprint('lab5',__name__)
@@ -19,7 +20,7 @@ def dbClose(cursor,connection):
 
 @lab5.route("/lab5/") 
 def main(): 
-    visibleUser = 'Anon' 
+    visibleUser = session.get('username', 'Anon') 
     # Прописываем параметры подключения к БД 
     conn = psycopg2.connect( 
         host="127.0.0.1", 
@@ -72,20 +73,21 @@ def registerPage():
         print(error)
         return render_template('register.html', error=error)
 
-    
+    hashPassword = generate_password_hash(password)
 
     conn = dbConnect()
     cur = conn.cursor()
     cur.execute(f"SELECT username FROM users WHERE username = '{username}';")
 
-    if cur.fetchone() is not None:
+    if cur.fetchone() is not None:#не получаем ббольше одной строки только один пользователь может быть с таким именем
         error = "Пользователь с данным именем уже существует"
 
         dbClose(cur, conn)
         return render_template('register.html', error=error)
     
-    cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}','{password}');")
-    conn.commit()
+    #сохраняем пароль в вижде хэша в бд
+    cur.execute(f"INSERT INTO users (username, password) VALUES ('{username}','{hashPassword}');")
+    conn.commit()#фиксируем изменения
     dbClose(cur, conn)
 
     return redirect("/lab5/login")
@@ -111,15 +113,15 @@ def loginPage():
 
     if result is None:
         error="Неправильный логин или пароль"
-        conn.close()  # Закрытие соединения
+        dbClose(cur,conn)  # Закрытие соединения
         return render_template('login2.html', error=error)
     
     userID, hashPassword = result
     if check_password_hash(hashPassword, password):
         session['id'] = userID
         session['username'] = username
-        conn.close()  # Закрытие соединения
+        dbClose(cur,conn)  # Закрытие соединения
         return redirect("/lab5/")
     else:
-        error=("Неправильный логин или пароль")
-        return render_template("login2.html", errors=errors)
+        error ="Неправильный логин или пароль"
+        return render_template("login2.html", error=error)
