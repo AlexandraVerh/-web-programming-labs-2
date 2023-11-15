@@ -125,3 +125,57 @@ def loginPage():
     else:
         error ="Неправильный логин или пароль"
         return render_template("login2.html", error=error)
+    
+@lab5.route("/lab5/new_article", methods=["GET", "POST"])
+def createArticle():
+    error = ''
+    userID = session.get("id")
+
+    if userID is not None:
+        if request.method == "GET":
+            return render_template("new_article.html")
+        
+        if request.method == "POST":
+            text_article = request.form.get("text_article")
+            title = request.form.get("title_article")
+        
+            if len(text_article) == 0:
+                error="Заполните текст"
+                return render_template("new_article.html", error=error)
+        
+            conn = dbConnect()
+            cur = conn.cursor()
+
+            cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({userID}, '{title}', '{text_article}') RETURNING id")
+            new_article_id = cur.fetchone()[0]
+            conn.commit()
+
+            dbClose(cur,conn)
+
+            return redirect(f"/lab5/articles/{new_article_id}")
+    return redirect("/lab5/login")
+
+@lab5.route("/lab5/articles/<string:article_id>")#все нечисловые символы пока
+def getArticle(article_id):
+    userID = session.get("id")
+
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()
+
+        cur.execute("SELECT title, article_text FROM articles WHERE id = %s and user_id = %s", (article_id, userID))
+
+        articleBody = cur.fetchone()#берет одну строку
+
+        dbClose(cur, conn)
+
+        if articleBody is None:
+            return "Not found!"
+        
+        #разбить статью на параграфы
+        text = articleBody[1].splitlines()
+
+        return render_template("articleN.html", article_text=text,
+        article_title=articleBody[0], username=session.get("username"))
+
+
