@@ -6,10 +6,11 @@ from flask_login import UserMixin
 Таким образом, создание таблицц возьмет  на себя  SQLAlchemy
 '''
 
-class users(db.Model):
+class users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
     password = db.Column(db.String(102), nullable=False)
+    #мы подсказываем Orm как отображать данные в строковом виде
     def __repr__(self):
         return f'id:{self.id}, username:{self.username}'
 
