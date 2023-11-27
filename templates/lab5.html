@@ -3,18 +3,35 @@
 {% block lab %}Лабораторная работа 5{% endblock %} 
  
 {% block main %} 
+<style>
+    a{
+    color: rgb(144, 0, 247);
+    text-decoration: none;
+    transition: 300ms ;
+    }
+    a:hover{
+    color: rgb(0, 217, 255);
+    text-decoration: underline;
+    background-color: rgb(145, 62, 228);
+    font-weight: bold;
+    transition: 700ms 0.3s;
+    }
+</style>
     <div style="display: flex; justify-content: space-between;">
         <p style="color: rgb(54, 42, 165); font-size: 25px;">База знаний</p>
-        <div style="text-align: center;">
+        
+        <div style="text-align: center; font-size: 25px;">
             <a href="/lab5/article_list" style="margin-right: 10px;">Посмотреть заметки</a>
             <a href="/lab5/new_article" style="margin-right: 10px;">Создать заметку</a>
             <a href="/lab5/users" style="margin-right: 10px;">Пользователи</a>
         </div>
-        <div>
-            <a href="/lab5/login" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Войти</a>
-            <a href="/lab5/register" style="background-color: blue; color: white; padding: 5px 10px; border-radius: 5px;">Регистрация</a>
-            <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+        
+        <div style="font-size: 20px;">
             <span>{{username}}</span>
+            <a href="/lab5/login" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Войти</a>
+            <a href="/lab5/register" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Регистрация</a>
+            <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+            
         </div>
     </div>
 {% endblock %}

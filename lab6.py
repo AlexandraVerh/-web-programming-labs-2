@@ -19,3 +19,36 @@ def checkarticles():
     all_articles = articles.query.all()
     print(all_articles)
     return "result in console!"
+
+@lab6.route("/lab6/register", methods=['GET', 'POST'])
+def register():
+    if request.method == "GET":
+        return render_template("register2.html")
+
+    username_form = request.form.get("username")
+    password_form = request.form.get("password")
+
+    # Проверка пустого имени пользователя
+    if not username_form:
+        error = "Пустое имя!"
+        return render_template("register2.html", error=error)
+
+    # Проверка длины пароля
+    if len(password_form) < 5:
+        error = "Пароль должен содержать не менее 5 символов!"
+        return render_template("register2.html", error=error)
+
+    # Проверка наличия пользователя с таким именем
+    existing_user = users.query.filter_by(username=username_form).first()
+    if existing_user:
+        error = "Пользователь с таким именем уже существует!"
+        return render_template("register2.html", error=error)
+
+    # Создание нового пользователя
+    hashed_password = generate_password_hash(password_form, method="pbkdf2")
+    new_user = users(username=username_form, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return redirect("/lab6/login")
+
