@@ -32,17 +32,18 @@ def calculate_price(params):
     milk = params['milk']
     sugar = params['sugar']
 
-    if drink == 'coffe':
+    if drink == 'coffee':
         price = 120
     elif drink == 'black-tea':
         price = 80
     else:
         price = 70
 
+        # Добавка молока удорожает напиток на 30 рублей, а сахара - на 10.
     if milk:
         price += 30
     if sugar:
-        price +=10
+        price += 10
 
     return price
 
