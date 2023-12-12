@@ -25,3 +25,10 @@ def get_course(course_num):
     if course_num < 0 or course_num >= len(courses):
         abort(404)  # возвращаем ошибку 404, если номер выходит за пределы
     return courses[course_num]
+
+@lab8.route('/lab8/api/courses/<int:course_num>', methods=['DELETE'])
+def del_course(course_num):
+    if course_num < 0 or course_num >= len(courses):
+        abort(404)  
+    del courses[course_num]
+    return '', 204
