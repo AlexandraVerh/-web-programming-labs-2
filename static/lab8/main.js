@@ -1,13 +1,13 @@
 function fillCourseList() {
     fetch('/lab8/api/courses/')
     .then(function(data) {
-        return data.json()
+        return data.json();
     })
     .then(function (courses) {
         let tbody = document.getElementById('course-list');
         tbody.innerHTML=''; //чистим данные с предыдущих запросов
         for(let i = 0; i<courses.length; i++) {
-            tr = document.createElement('tr');
+            let tr = document.createElement('tr');
 
             let tdName = document.createElement('td');
             tdName.innerText = courses[i].name;
@@ -17,6 +17,9 @@ function fillCourseList() {
 
             let tdPrice = document.createElement('td');
             tdPrice.innerText = courses[i].price || 'бесплатно';//если цена не задана
+
+            let tdCreatedDate = document.createElement('td');
+            tdCreatedDate.innerText = courses[i].created_date;
 
             let editButton = document.createElement('button');
             editButton.innerText = 'редактировать';
@@ -37,11 +40,12 @@ function fillCourseList() {
             tr.append(tdName);
             tr.append(tdVideos);
             tr.append(tdPrice);
+            tr.append(tdCreatedDate);
             tr.append(tdActions);
 
             tbody.append(tr);
         }
-    })
+    });
 }
 
 function deleteCourse(num) {
@@ -81,19 +85,19 @@ function sendCourse() {
     const course = {
         name: document.getElementById('name').value,
         videos: document.getElementById('videos').value,
-        price: document.getElementById('price').value
-    }
+        price: document.getElementById('price').value,
+    };
 
     const url = `/lab8/api/courses/${num}`;
     const method = num ? 'PUT' : 'POST';
     fetch(url, {
         method: method,
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(course)
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(course),
     })
     .then(function() {
-        fillCourseList();//перезагрузка таблицы
-        hideModal();//закрытие модального окна
+        fillCourseList(); // перезагрузка таблицы
+        hideModal(); // закрытие модального окна
     });
 }
 

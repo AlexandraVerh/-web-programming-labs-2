@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, abort, jsonify
-
+from datetime import datetime
 lab8 = Blueprint('lab8',__name__)
 
 
@@ -8,10 +8,10 @@ def main():
     return render_template('lab8/index.html')
 
 courses = [
-    {"name": "c++", "videos": 3, "price": 3000},
-    {"name": "basic", "videos": 30, "price": 450},
-    {"name": "python", "videos": 15, "price": 1450},
-    {"name": "c#", "videos": 8} #если цена не указана, то курс бесплатный
+    {"name": "c++", "videos": 3, "price": 3000, "created_date": datetime.now()},
+    {"name": "basic", "videos": 30, "price": 450, "created_date": datetime.now()},
+    {"name": "python", "videos": 15, "price": 1450, "created_date": datetime.now()},
+    {"name": "c#", "videos": 8, "created_date": datetime.now()}
 ]
 
 #Здесь мы определяем, что у нас будет специальный путь, по которому будет
@@ -48,6 +48,7 @@ def put_course(course_num):
 @lab8.route('/lab8/api/courses/', methods=['POST'])
 def add_course():
     course = request.get_json()
+    course["created_date"] = datetime.now()  # автоматическое заполнение даты создания
     courses.append(course)
-    return {"num": len(courses)-1} #возвращение номера нового курса
+    return {"num": len(courses)-1}  # возвращение номера нового курса
 
