@@ -2,6 +2,7 @@ function getPrice() {
     const milk = document.querySelector('[name=milk]').checked;
     const sugar = document.querySelector('[name=sugar]').checked;
     const drink = document.querySelector('[name=drink]:checked') ? document.querySelector('[name=drink]:checked').value : '';
+    //присваивается значение переменной, иначе пустое значение
 
     const obj = {
         "method": "get-price",
@@ -43,6 +44,11 @@ function pay() {
             milk: milk,
             sugar: sugar,
             price: document.querySelector('#price').textContent.split('Цена напитка: ')[1].split(' руб.')[0]  // Добавляем рассчитанную цену в объект params
+        //.split('Цена напитка: ') разделяет текстовое содержимое на массив строк, используя "Цена напитка: " как разделитель. 
+        //Это нужно для удаления первой части текста, чтобы осталось только значение цены.
+        // [1] выбирает второй элемент (индекс 1) из результирующего массива.
+        //.split(' руб.') разделяет полученное значение на массив строк, используя " руб." как разделитель. Это нужно для удаления текста " руб." в конце значения цены.
+        //[0] выбирает первый элемент (индекс 0) из результирующего массива, чтобы получить итоговое значение цены напитка.
         }
     };
 
