@@ -10,6 +10,7 @@ def main():
 courses = [
     {"name": "c++", "videos": 3, "price": 3000},
     {"name": "basic", "videos": 30, "price": 450},
+    {"name": "python", "videos": 15, "price": 1450},
     {"name": "c#", "videos": 8} #если цена не указана, то курс бесплатный
 ]
 
