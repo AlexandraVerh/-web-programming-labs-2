@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+ 
+{% block lab %}Онлайн магазин{% endblock %} 
+ 
+{% block main %} 
+<div style="font-size: 20px;">
+    <span>{{username}}</span>
+    <a href="/rgz/login" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Войти</a>
+    <a href="/rgz/register" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Регистрация</a>
+    <a href="logout" style="border: 2px solid blue; padding: 5px 10px; border-radius: 5px;">Выход</a>
+    
+</div>
+
+{% endblock %}
