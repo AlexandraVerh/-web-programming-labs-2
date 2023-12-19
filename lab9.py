@@ -6,3 +6,7 @@ lab9 = Blueprint('lab9',__name__)
 def main():
    
         return render_template('lab9/index.html')
+
+@lab9.app_errorhandler(404)
+def not_found(e):
+    return render_template('lab9/error.html'), 404
