@@ -1,0 +1,8 @@
+from flask import Blueprint, render_template, request, redirect, url_for
+
+lab9 = Blueprint('lab9',__name__)
+
+@lab9.route('/lab9/', methods=['GET', 'POST'])
+def main():
+   
+        return render_template('lab9/index.html')
