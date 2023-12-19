@@ -6,5 +6,20 @@
 
 {% block main %}
     <h1>Поздравления</h1>
+    <form action="/lab9/" method="POST">
+        <label for="sender_name">Имя отправителя:</label>
+        <input type="text" id="sender_name" name="sender_name" required><br><br>
+    
+        <label for="recipient_gender">Пол получателя:</label>
+        <select id="recipient_gender" name="recipient_gender" required>
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select><br><br>
+    
+        <label for="recipient_name">Имя получателя:</label>
+        <input type="text" id="recipient_name" name="recipient_name" required><br><br>
+    
+        <input type="submit" value="Отправить">
+    </form>
     
 {% endblock %}

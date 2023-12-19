@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block lab %}Лабораторная работа 9{% endblock %}
+
+{% block main %}
+<h1>Открытка - Поздравление с Новым годом</h1>
+<p>
+    {% if recipient_gender == 'male' %}
+        Дорогой {{ recipient_name }}! Поздравляю тебя с новым 2024 годом! Желаю, чтобы этот год принес много счастья и любви. Ты прекрасен!
+    {% else %}
+        Дорогая {{ recipient_name }}! Поздравляю тебя с новым 2024 годом! Желаю, чтобы этот год принес много счастья и любви. Ты прекрасна!
+    {% endif %} 
+</p>
+<p>
+    С наилучшими пожеланиями, <strong>{{ sender_name }}</strong> ❤.
+</p>
+<div>
+<img src="/static/gir.png" style="height: 300px;">
+</div>
+{% endblock %}
